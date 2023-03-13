@@ -1,5 +1,6 @@
 import express from 'express';
 import AppDataSource from './config/Database';
+import { CargoController } from './controller/CargoController';
 import { UsuarioController } from './controller/UsuarioController';
 
 AppDataSource.initialize().then(() => {
@@ -20,5 +21,7 @@ AppDataSource.initialize().then(() => {
   app.put('/usuarios/:id', new UsuarioController().update);
   app.delete('/usuarios/:id', new UsuarioController().delete);
 
-  app.listen(8007);
+  app.get('/cargos', new CargoController().list);
+
+  app.listen(8080);
 }).catch(e => console.log('Erro ao conectar ao banco: ', e))
