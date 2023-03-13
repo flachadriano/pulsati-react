@@ -10,12 +10,13 @@ export class UsuarioController {
   }
 
   async create(req: Request, res: Response) {
-    const { nome, sobrenome }: { 
-      nome: string, sobrenome: string
+    const { nome, sobrenome, codigo_cargo }: { 
+      nome: string, sobrenome: string, codigo_cargo: number
     } = req.body;
     const usuario = new Usuario();
     usuario.nome = nome;
     usuario.sobrenome = sobrenome;
+    usuario.codigo_cargo = codigo_cargo;
 
     const repo = AppDataSource.getRepository(Usuario);
     await repo.save(usuario);
